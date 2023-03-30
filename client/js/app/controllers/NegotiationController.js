@@ -6,7 +6,7 @@ class NegotiationController {
     this._inputAmount = $('#quantidade');
     this._inputValue = $('#valor');
 
-    this._negotiationsList = new NegotiationsList(model => this._negotiationsView.update(model));
+    this._negotiationsList = ProxyFactory.create(new NegotiationsList(), ['add', 'empty'], (model) => this._negotiationsView.update(model));
 
     this._negotiationsView = new NegotiationsView($('#negotiationsView'));
     this._negotiationsView.update(this._negotiationsList);
